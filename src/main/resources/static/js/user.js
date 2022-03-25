@@ -75,7 +75,7 @@
 
         if (responseParse.code == 1){
             alert("로그인 완료");
-            location.href = "/loginForm"
+            location.href = "/"
         }else{
             alert("로그인 실패")
         }
