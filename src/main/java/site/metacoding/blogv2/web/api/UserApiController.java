@@ -22,16 +22,24 @@ public class UserApiController {
     private final UserService userService;
     private final HttpSession session;
 
+    // 회원가입 페이지주세요, 회원가입할게요, 로그인 페이지주세요, 로그인할게요
+    // 로그아웃할게요
+    @GetMapping("/logout")
+    public ResponseDto<?> logout() {
+        session.invalidate();
+        return new ResponseDto<>(1, "성공", null);
+    }
+
     @PostMapping("/join")
-    public ResponseDto<String> join(@RequestBody JoinDto joinDto) {
+    public ResponseDto<?> join(@RequestBody JoinDto joinDto) {
 
         userService.회원가입(joinDto);
 
-        return new ResponseDto<String>(1, "회원가입성공", null);
+        return new ResponseDto<>(1, "회원가입성공", null);
     }
 
     @PostMapping("/login")
-    public ResponseDto<String> login(HttpServletResponse response, @RequestBody LoginDto loginDto) {
+    public ResponseDto<?> login(HttpServletResponse response, @RequestBody LoginDto loginDto) {
 
         User userEntity = userService.로그인(loginDto);
 
@@ -43,9 +51,9 @@ public class UserApiController {
             }
             session.setAttribute("principal", userEntity);
 
-            return new ResponseDto<String>(1, "로그인성공", null);
+            return new ResponseDto<>(1, "로그인성공", null);
         } else {
-            return new ResponseDto<String>(-1, "로그인실패", null);
+            return new ResponseDto<>(-1, "로그인실패", null);
         }
 
     }
