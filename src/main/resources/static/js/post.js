@@ -1,5 +1,5 @@
 // 1. 이벤트 리스너
-$("btn-write").click(()=>{
+$("#btn-write").click(()=>{
     write();
 });
 
