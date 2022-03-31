@@ -15,13 +15,7 @@
 
       // 2. 기능
 
-      // 유저네임 기억하기 함수 httpOnly 속성이 걸려있으면 안된다 주의하자!!
-    function usernameRemember(){
-      let cookies = document.cookie.split("=");
-      //console.log(cookie[1]);
-      $("#username").val(cookies[1]);
-    }
-    usernameRemember();
+
 
       // 회원가입 요청 함수
       let join =async() =>{
@@ -113,4 +107,6 @@
         } else {
            alert('회원수정실패');
     }
+
+    
       }
