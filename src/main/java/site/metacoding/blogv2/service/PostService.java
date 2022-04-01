@@ -2,6 +2,8 @@ package site.metacoding.blogv2.service;
 
 import java.util.Optional;
 
+import javax.transaction.Transactional;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
@@ -18,6 +20,11 @@ import site.metacoding.blogv2.domain.post.PostRepository;
 @RequiredArgsConstructor
 public class PostService {
     private final PostRepository postRepository;
+
+    @Transactional
+    public void 글삭제하기(Integer id) {
+        postRepository.deleteById(id);
+    }
 
     public Post 글상세보기(Integer id) {
         Optional<Post> postOp = postRepository.findById(id);
